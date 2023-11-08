@@ -22,11 +22,7 @@ app.use(auth({
     baseURL: externalUrl || `https://localhost:${port}`,
     clientID: process.env.CLIENT_ID,
     issuerBaseURL: process.env.ISSUER_BASE_URL,
-    clientSecret: process.env.CLIENT_SECRET,
-    authorizationParams: {
-        scope: "openid profile email isAdmin",
-        response_type: "code"
-    }
+    clientSecret: process.env.CLIENT_SECRET
 }));
 
 app.use( function (req, res, next) {

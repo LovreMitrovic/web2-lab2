@@ -1,0 +1,94 @@
+{
+  "shops": [
+    {
+      "uuid": "b0645033-c5cf-48a6-bebb-804c2cef5d65",
+      "name": "Shop Wolves",
+      "location": "Zagreb, Croatia",
+      "working_hours": "Mon-Fri: 9 AM - 6 PM, Sat: 10 AM - 4 PM",
+      "contact_number": "+385 (1) 234-5678",
+      "contact_email": "wolves@example.com",
+      "door_pin": 1234
+    },
+    {
+      "uuid": "50448e8e-b0b8-4628-a828-7fb0a5fda6a5",
+      "name": "Store Smith",
+      "location": "Vienna, Austria",
+      "working_hours": "Mon-Fri: 8 AM - 7 PM, Sat: 9 AM - 5 PM",
+      "contact_number": "+43 (1) 234-5678",
+      "contact_email": "smith@example.com",
+      "door_pin": 5678
+    },
+    {
+      "uuid": "619f24c8-3bbb-4355-b99a-3395430227f1",
+      "name": "Shop Horvat",
+      "location": "Zagreb, Croatia",
+      "working_hours": "Mon-Fri: 9 AM - 6 PM, Sat: 10 AM - 4 PM",
+      "contact_number": "+385 (1) 234-5679",
+      "contact_email": "horvat@example.com",
+      "door_pin": 9876
+    },
+    {
+      "uuid": "530eebc1-4215-464b-88bc-bb66efa2c7e6",
+      "name": "Store Müller",
+      "location": "Vienna, Austria",
+      "working_hours": "Mon-Fri: 8 AM - 7 PM, Sat: 9 AM - 5 PM",
+      "contact_number": "+43 (1) 234-5680",
+      "contact_email": "muller@example.com",
+      "door_pin": 1122
+    },
+    {
+      "uuid": "8c46bed0-037b-4caf-9260-a6cf4274c0a8",
+      "name": "Shop Kovac",
+      "location": "Zagreb, Croatia",
+      "working_hours": "Mon-Fri: 9 AM - 6 PM, Sat: 10 AM - 4 PM",
+      "contact_number": "+385 (1) 234-5681",
+      "contact_email": "kovac@example.com",
+      "door_pin": 3344
+    },
+    {
+      "uuid": "49d4cc15-15e5-4b41-b1c0-4e9cbe1f8b18",
+      "name": "Store Fischer",
+      "location": "Vienna, Austria",
+      "working_hours": "Mon-Fri: 8 AM - 7 PM, Sat: 9 AM - 5 PM",
+      "contact_number": "+43 (1) 234-5682",
+      "contact_email": "fischer@example.com",
+      "door_pin": 5566
+    },
+    {
+      "uuid": "3dbb636e-817b-449c-a182-3fca7bb6723d",
+      "name": "Shop Novak",
+      "location": "Zagreb, Croatia",
+      "working_hours": "Mon-Fri: 9 AM - 6 PM, Sat: 10 AM - 4 PM",
+      "contact_number": "+385 (1) 234-5683",
+      "contact_email": "novak@example.com",
+      "door_pin": 7788
+    },
+    {
+      "uuid": "980f1f07-9cad-420f-9bcc-cec29c70a0e4",
+      "name": "Store Weber",
+      "location": "Vienna, Austria",
+      "working_hours": "Mon-Fri: 8 AM - 7 PM, Sat: 9 AM - 5 PM",
+      "contact_number": "+43 (1) 234-5684",
+      "contact_email": "weber@example.com",
+      "door_pin": 9900
+    },
+    {
+      "uuid": "be5716b1-aad2-45d5-ac73-a01f7f96cc27",
+      "name": "Shop Babic",
+      "location": "Zagreb, Croatia",
+      "working_hours": "Mon-Fri: 9 AM - 6 PM, Sat: 10 AM - 4 PM",
+      "contact_number": "+385 (1) 234-5685",
+      "contact_email": "babic@example.com",
+      "door_pin": 1122
+    },
+    {
+      "uuid": "ed2f5371-f6a5-4db5-a072-70455c987205",
+      "name": "Store Wagner",
+      "location": "Vienna, Austria",
+      "working_hours": "Mon-Fri: 8 AM - 7 PM, Sat: 9 AM - 5 PM",
+      "contact_number": "+43 (1) 234-5686",
+      "contact_email": "wagner@example.com",
+      "door_pin": 3344
+    }
+  ]
+}

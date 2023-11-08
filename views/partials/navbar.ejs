@@ -1,0 +1,13 @@
+<nav>
+    <a href="/">
+        <h2>Shop finder</h2>
+    </a>
+    <div>
+        <% if(typeof user !== 'undefined' && user !== null){ %>
+        <span><%=user.email%></span>
+        <a href="/logout"><button>Logout</button></a>
+        <%}else{%>
+            <a href="/login"><button>Login</button></a>
+        <%}%>
+    </div>
+</nav>

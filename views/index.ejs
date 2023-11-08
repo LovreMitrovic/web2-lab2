@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="/public/css/global.css">
+    <link rel="stylesheet" href="/public/css/index.css">
+</head>
+<body>
+<%- include ('partials/navbar.ejs',{user}) %>
+<div class="body">
+
+<h1>Shop finder</h1>
+<form id="search-form" action="/shops" method="get">
+    <input id="search-input" type="text" name="keyword">
+    <button type="submit">Search</button>
+</form>
+
+<form id="settings-form" action="/settings" method="post">
+    <label>Enable vulnerbilities</label>
+    <div>
+        <label for="search-xss">XSS</label>
+        <input id="settings-xss" type="checkbox" name="xss"
+        <%if(xss){%> checked <%};%>>
+    </div>
+    <div>
+        <label for="search-control-access">Controll access</label>
+        <input id="settings-control-access" type="checkbox" name="ca"
+        <%if(ca){%> checked <%};%>>
+    </div>
+</form>
+
+<div id="articles">
+    <article>
+        <article>
+            <h3>IMPORTANT: What to search?</h3>
+            <p>
+                Try searching for "Zagreb" or "Vienna" to see some shops. If you leave search field empty, none of the shops will be shown.
+                <br>
+                Read articles down below to see how to exploit vulnerabilities.
+            </p>
+        </article>
+        <h3>XSS</h3>
+        <p>
+            Check XSS checkbox to enable XSS vulnerability.
+            Then search for shops but instead of using legitimate search term, use XSS payload.
+            For example: <code>&lt;script&gt;alert("Attack")&lt;/script&gt;</code> or if you want to see cookie
+            <code>&lt;script&gt;alert(document.cookie)&lt;/script&gt;</code>
+        </p>
+    </article>
+    <article>
+        <h3>Control access</h3>
+        <p>
+            Check access control checkbox to enable bad access control vulnerability.
+            Then server will use bad object referencing. It will use ordinal number instead of uuid.
+            If objects (shops in this case) can be reference using ordinal number attacker can gain knowledge about other objects.
+            For example if this vulnerability is enabled: <a href="/shops/0/user"> /shops/0/user </a> will show first shop in database.
+            Otherwise, this shop can only be referenced by its uuid <a href="/shops/b0645033-c5cf-48a6-bebb-804c2cef5d65/user">/shops/b0645033-c5cf-48a6-bebb-804c2cef5d65/user</a>.
+            <br>
+            Also, if this vulnerbility is enabled, then <a href="/shops/0/admin"> /shops/0/admin </a> is not protected by authentication. Otherwise,
+            <a href="/shops/b0645033-c5cf-48a6-bebb-804c2cef5d65/admin">/shops/b0645033-c5cf-48a6-bebb-804c2cef5d65/admin</a> will be protected by authentication.
+            Admin pages control secret information about door PIN codes.
+            <br>
+            Access control checkbox enables both of vulnerabilities: bad referencing and unprotected admin pages.
+
+        </p>
+    </article>
+    <article>
+        <h3>Admin credentials</h3>
+        <p>
+            email: lovre.mitrovic@fer.hr
+            <br>
+            password: ^CS.vsyCUas38t&
+        </p>
+    </article>
+</div>
+</div>
+</body>
+<script>
+    const form = document.getElementById("settings-form");
+    const submitForm = function() {
+        form.submit();
+    };
+
+    document.getElementById("settings-xss").addEventListener("change", submitForm);
+    document.getElementById("settings-control-access").addEventListener("change", submitForm);
+</script>
+</html>

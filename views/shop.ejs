@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Cards</title>
+    <link rel="stylesheet" href="/public/css/global.css">
+    <link rel="stylesheet" href="/public/css/shop.css">
+</head>
+
+<body>
+<%- include ('partials/navbar.ejs',{user}) %>
+<div class="body">
+<div class="card-container">
+    <div class="card">
+        <h2>
+            <%=shop.name%>
+        </h2>
+        <p><strong>Location:</strong> <%=shop.location%></p>
+        <p><strong>Working hours:</strong> <%=shop.working_hours%></p>
+        <p><strong>Contact:</strong> <%=shop.contact_number%></p>
+        <p><strong>Email:</strong> <%=shop.contact_email%></p>
+        <%if(typeof shop.door_pin !== 'undefined'){%>
+        <p><strong>Door pin:</strong> <%=shop.door_pin%></p>
+        <%}%>
+    </div>
+</div>
+</div>
+</body>
+
+</html>

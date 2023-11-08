@@ -51,7 +51,7 @@ app.use(function (req, res, next) {
 });
 
 app.get('/c',(req,res)=>{
-    res.send(req.cookies);
+    res.json(req.cookies);
 });
 
 

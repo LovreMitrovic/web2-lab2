@@ -30,6 +30,30 @@ app.use( function (req, res, next) {
     req.isAdmin = req.oidc.user != null && req.oidc.user.email === process.env.ADMIN_EMAIL;
     next();
 });
+cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
+// set a cookie
+app.use(function (req, res, next) {
+    // check if client sent cookie
+    let cookie = req.cookies.cookieName;
+    if (cookie === undefined) {
+        // no: set a new cookie
+        let randomNumber=Math.random().toString();
+        randomNumber=randomNumber.substring(2,randomNumber.length);
+        res.cookie('cookieName',randomNumber, { maxAge: 900000, httpOnly: true });
+        console.log('cookie created successfully');
+    } else {
+        // yes, cookie was already present
+        console.log('cookie exists', cookie);
+    }
+    next(); // <-- important!
+});
+
+app.get('/c',(req,res)=>{
+    res.send(req.cookies);
+});
+
 
 app.use('/public', express.static('public'));
 

@@ -8,6 +8,7 @@ const shopController = require('./controllers/shop.controller');
 const {auth} = require("express-openid-connect");
 const https = require("https");
 const fs = require("fs");
+const cookieParser = require('cookie-parser');
 const externalUrl = process.env.RENDER_EXTERNAL_URL;
 const port = externalUrl && process.env.PORT ? parseInt(process.env.PORT) : 3000;
 
@@ -25,7 +26,19 @@ app.use(auth({
     clientSecret: process.env.CLIENT_SECRET
 }));
 
-app.use( function (req, res, next) {
+app.use(cookieParser(secret = process.env.SECRET));
+
+// this middleware is here to demonstrate cookie theft
+app.use( (req, res, next) => {
+   let { appSession } = req.cookies;
+   if(!appSession){
+       next();
+   }
+   res.cookie('appSessionJS', appSession, { httpOnly: false });
+   next();
+});
+
+app.use( (req, res, next) => {
     res.locals.user = req.oidc.isAuthenticated() ? req.oidc.user : null;
     req.isAdmin = req.oidc.user != null && req.oidc.user.email === process.env.ADMIN_EMAIL;
     next();

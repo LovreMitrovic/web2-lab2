@@ -44,6 +44,12 @@ app.use( (req, res, next) => {
     next();
 });
 
+app.use( (req, res, next) => {
+    req.xss = req.params.xss === 'on';
+    req.ac = req.params.ac === 'on';
+    next();
+});
+
 app.use('/public', express.static('public'));
 
 app.get('/', indexController.get);
@@ -51,8 +57,6 @@ app.get('/', indexController.get);
 app.get('/shops/:id/:user', shopController.get)
 
 app.get('/shops', shopsController.get);
-
-app.post('/settings', settingsController.post);
 
 
 if(externalUrl){

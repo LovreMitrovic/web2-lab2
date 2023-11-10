@@ -6,7 +6,7 @@ const get = (req, res) => {
     let id = req.params.id
     // ako je ispravan access control onda id odgovar uuid
     // inače odgovara indexu u arrayu
-    if(!Settings.ca) {
+    if(!req.ca) {
         shop = Shops.getAll().find(shop => shop['uuid'] === id);
     } else {
         shop = Shops.getAll()[id];
@@ -29,7 +29,7 @@ const get = (req, res) => {
     }
     // ako je ispravan access control onda provjeri
     // je li korisnik stvarno logiran i je li admin
-    if(!Settings.ca) {
+    if(!req.ca) {
         if(typeof req.oidc.user === 'undefined'){// unautorised
             res.redirect('/login');
             return;

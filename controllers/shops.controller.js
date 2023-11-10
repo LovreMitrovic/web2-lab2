@@ -5,7 +5,7 @@ const get = (req, res) => {
     const { keyword } = req.query;
     let keywordHtml;
     let shopsList = keyword ? Shops.search(keyword): [];
-    if(!Settings.xss) {
+    if(!req.xss) {
         keywordHtml = keyword.replace(/</g, '&lt;')
             .replace(/>/g, '&gt;')
             .replace(/\//g, '&#x2F;')
@@ -14,13 +14,14 @@ const get = (req, res) => {
         keywordHtml = keyword;
     }
     let userType = req.isAdmin ? 'admin' : 'user';
-    if(!Settings.ca) {
+    let xssParam = req.xss ? 'xss=on' : 'xss=off';
+    if(!req.ca) {
         shopsList = shopsList.map(shop => ({
-            ...shop, link: `/shops/${shop['uuid']}/${userType}`
+            ...shop, link: `/shops/${shop['uuid']}/${userType}?${xssParam}`
         }));
     } else {
         shopsList = shopsList.map(shop => ({
-            ...shop, link: `/shops/${shopsList.indexOf(shop)}/${userType}`
+            ...shop, link: `/shops/${shopsList.indexOf(shop)}/${userType}?ca=on&${xssParam}`
         }));
     }
     res.render('shops', {

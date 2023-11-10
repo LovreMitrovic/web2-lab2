@@ -1,8 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-const indexController = require('./controllers/index.controller.js');
-const settingsController = require('./controllers/settings.controller.js');
 const shopsController = require('./controllers/shops.controller');
 const shopController = require('./controllers/shop.controller');
 const {auth} = require("express-openid-connect");
@@ -30,11 +28,8 @@ app.use(cookieParser(secret = process.env.SECRET));
 
 // this middleware is here to demonstrate cookie theft
 app.use( (req, res, next) => {
-   let { appSession } = req.cookies;
-   if(!appSession){
-       next();
-   }
-   res.cookie('appSessionJS', appSession, { httpOnly: false });
+   let exampleCookie = "tajna";
+   res.cookie('appSessionJS', exampleCookie, { httpOnly: false });
    next();
 });
 
@@ -45,14 +40,16 @@ app.use( (req, res, next) => {
 });
 
 app.use( (req, res, next) => {
-    req.xss = req.params.xss === 'on';
-    req.ac = req.params.ac === 'on';
+    req.xss = req.query.xss === 'on';
+    req.ac = req.query.ac === 'on';
     next();
 });
 
 app.use('/public', express.static('public'));
 
-app.get('/', indexController.get);
+app.get('/', (req, res) => {
+    res.render('index');
+});
 
 app.get('/shops/:id/:user', shopController.get)
 

@@ -12,22 +12,22 @@
 <div class="body">
 
 <h1>Shop finder</h1>
-<form id="search-form" action="/shops" method="get">
-    <input id="search-input" type="text" name="keyword">
-    <button type="submit">Search</button>
-</form>
-
-<form id="settings-form" action="/settings" method="post">
-    <label>Enable vulnerbilities</label>
-    <div>
-        <label for="search-xss">XSS</label>
-        <input id="settings-xss" type="checkbox" name="xss"
-        <%if(xss){%> checked <%};%>>
+<form action="/shops" method="get">
+    <div class="form" id="search-form">
+        <input id="search-input" type="text" name="keyword">
+        <button type="submit">Search</button>
     </div>
-    <div>
-        <label for="search-control-access">Controll access</label>
-        <input id="settings-control-access" type="checkbox" name="ca"
-        <%if(ca){%> checked <%};%>>
+
+    <div class ="form" id="settings-form">
+        <label>Enable vulnerbilities</label>
+        <div>
+            <label for="settings-xss">XSS</label>
+            <input id="settings-xss" type="checkbox" name="xss">
+        </div>
+        <div>
+            <label for="settings-control-access">Access control</label>
+            <input id="settings-control-access" type="checkbox" name="ac">
+        </div>
     </div>
 </form>
 
@@ -55,10 +55,10 @@
             Check access control checkbox to enable bad access control vulnerability.
             Then server will use bad object referencing. It will use ordinal number instead of uuid.
             If objects (shops in this case) can be reference using ordinal number attacker can gain knowledge about other objects.
-            For example if this vulnerability is enabled: <a href="/shops/0/user"> /shops/0/user </a> will show first shop in database.
+            For example if this vulnerability is enabled: <a href="/shops/0/user?ac=on"> /shops/0/user?ac=on </a> will show first shop in database.
             Otherwise, this shop can only be referenced by its uuid <a href="/shops/b0645033-c5cf-48a6-bebb-804c2cef5d65/user">/shops/b0645033-c5cf-48a6-bebb-804c2cef5d65/user</a>.
             <br>
-            Also, if this vulnerbility is enabled, then <a href="/shops/0/admin"> /shops/0/admin </a> is not protected by authentication. Otherwise,
+            Also, if this vulnerbility is enabled, then <a href="/shops/0/admin?ac=on"> /shops/0/admin?ac=on </a> is not protected by authentication. Otherwise,
             <a href="/shops/b0645033-c5cf-48a6-bebb-804c2cef5d65/admin">/shops/b0645033-c5cf-48a6-bebb-804c2cef5d65/admin</a> will be protected by authentication.
             Admin pages control secret information about door PIN codes.
             <br>

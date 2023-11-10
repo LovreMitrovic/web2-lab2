@@ -15,13 +15,13 @@ const get = (req, res) => {
     }
     let userType = req.isAdmin ? 'admin' : 'user';
     let xssParam = req.xss ? 'xss=on' : 'xss=off';
-    if(!req.ca) {
+    if(!req.ac) {
         shopsList = shopsList.map(shop => ({
             ...shop, link: `/shops/${shop['uuid']}/${userType}?${xssParam}`
         }));
     } else {
         shopsList = shopsList.map(shop => ({
-            ...shop, link: `/shops/${shopsList.indexOf(shop)}/${userType}?ca=on&${xssParam}`
+            ...shop, link: `/shops/${shopsList.indexOf(shop)}/${userType}?ac=on&${xssParam}`
         }));
     }
     res.render('shops', {
